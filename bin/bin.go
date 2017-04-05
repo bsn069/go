@@ -11,10 +11,6 @@ func run(iBin IBin) {
 	}
 
 	for {
-		if !iBin.ProcCmd("") {
-			break
-		}
-
 		if !iBin.Update() {
 			break
 		}

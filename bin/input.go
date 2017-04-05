@@ -37,12 +37,10 @@ func inputThread() {
 			}
 		}
 
-		if len(strCmd) >= 1 {
-			if strCmd[0] == '!' {
-				cmdExec(strCmd[1:], strParam)
-			} else {
-
-			}
+		if g_lastBin != nil {
+			g_lastBin.AsyncCmd(strCmd, strParam)
+		} else {
+			cmdExec(strCmd, strParam)
 		}
 	}
 }
