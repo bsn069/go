@@ -6,13 +6,12 @@ import (
 	"fmt"
 
 	"github.com/bsn069/go/path"
-	"github.com/bsn069/go/utils"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/util"
 )
 
 func Test_leveldb(t *testing.T) {
-	strGoPath := utils.Env("BSN_GITHUB_PATH")
+	strGoPath := path.GoPath()
 	strDBPath := path.Join(strGoPath, "nogit/go_test/leveldb")
 	db, err := leveldb.OpenFile(strDBPath, nil)
 	if err != nil {
