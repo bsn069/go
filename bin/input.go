@@ -38,7 +38,11 @@ func inputThread() {
 		}
 
 		if g_lastBin != nil {
-			g_lastBin.AsyncCmd(strCmd, strParam)
+			if strCmd[0] != '!' {
+				g_lastBin.AsyncCmd(strCmd, strParam)
+			} else {
+				cmdExec(strCmd[1:], strParam)
+			}
 		} else {
 			cmdExec(strCmd, strParam)
 		}
@@ -49,7 +53,9 @@ func cmdExec(strCmd, strParam string) {
 	strCmd = strings.ToUpper(strCmd)
 	if funcExec, bOk := g_cmd[strCmd]; bOk {
 		fmt.Println("run " + strCmd)
-		funcExec(strParam, false)
+		if !funcExec(strParam, false) {
+			funcExec(strParam, true)
+		}
 	} else {
 		cmdHELP(strParam, false)
 	}

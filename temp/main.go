@@ -7,6 +7,12 @@ import (
 )
 
 func main() {
-	binTest := new(bin.SBinTest)
-	bin.Run(binTest)
+	bin.Run(bin.NewBinTest(1, 1))
+	bin.Run(bin.NewBinTest(2, 1))
+	bin.Run(bin.NewBinTest(2, 2))
+	bin.Run(bin.NewBinTest(3, 1))
+	bin.Run(bin.NewBinTest(3, 2))
+	bin.Run(bin.NewBinTest(3, 3))
+	bin.Run(bin.NewBinTest(9, 9))
+	bin.WaitQuit()
 }
