@@ -37,6 +37,10 @@ func inputThread() {
 			}
 		}
 
+		if len(strCmd) == 0 {
+			continue
+		}
+
 		if g_lastBin != nil {
 			if strCmd[0] != '!' {
 				g_lastBin.AsyncCmd(strCmd, strParam)
@@ -52,7 +56,7 @@ func inputThread() {
 func cmdExec(strCmd, strParam string) {
 	strCmd = strings.ToUpper(strCmd)
 	if funcExec, bOk := g_cmd[strCmd]; bOk {
-		fmt.Println("run " + strCmd)
+		fmt.Println("run system cmd " + strCmd)
 		if !funcExec(strParam, false) {
 			funcExec(strParam, true)
 		}

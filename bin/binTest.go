@@ -2,6 +2,7 @@ package bin
 
 import (
 	"fmt"
+	"time"
 )
 
 // for test
@@ -20,13 +21,12 @@ func NewBinTest(typeId, id uint32) *SBinTest {
 	return pBinTest
 }
 
-
 func (this *SBinTest) AsyncCmd(strCmd, strParam string) {
 
 }
 
-func (this *SBinTest) Update() bool {
-	fmt.Println("Update", this.TypeId(), this.Id())
+func (this *SBinTest) Update(u32ElapseMs uint32, now *time.Time) bool {
+	// fmt.Println("Update", this.TypeId(), this.Id(), u32ElapseMs, now)
 	return !this.m_bQuit
 }
 
@@ -43,3 +43,6 @@ func (this *SBinTest) Quit() {
 	this.m_bQuit = true
 }
 
+func (this *SBinTest) FrameMs() uint32 {
+	return 1000
+}

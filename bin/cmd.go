@@ -21,7 +21,7 @@ func cmdPWD(strParam string, bHelp bool) bool {
 	}
 
 	if g_lastBin == nil {
-		fmt.Println()
+		fmt.Println(0, 0)
 	} else {
 		fmt.Println(g_lastBin.TypeId(), g_lastBin.Id())
 	}
@@ -93,9 +93,11 @@ func cmdHELP(strParam string, bHelp bool) bool {
 		return true
 	}
 
+	fmt.Println("in bin run system cmd use !cmd")
 	for k, v := range g_cmd {
 		fmt.Print(k + "\t")
 		v("", true)
 	}
+
 	return true
 }

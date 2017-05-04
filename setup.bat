@@ -87,6 +87,11 @@ pushd src
 		go get github.com/xtaci/kcp-go
 	)
 
+	if not exist github.com\astaxie\beego (
+		echo download github.com\astaxie\beego
+		go get github.com/astaxie/beego
+	)
+
 	pushd github.com\bsn069\go
 		if not exist nogit (
 			mkdir nogit

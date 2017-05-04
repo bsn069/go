@@ -21,10 +21,27 @@ func runThread(iBin IBin) {
 		return
 	}
 
+	var timeElapseMs uint32
 	for {
-		time.Sleep(time.Duration(time.Second * 1))
-		if !iBin.Update() {
+		timeNow := time.Now()
+		timeBegin := timeNow.UnixNano()
+		if !iBin.Update(timeElapseMs, &timeNow) {
 			break
+		}
+		timeEnd := time.Now().UnixNano()
+
+		frameMs := iBin.FrameMs()
+		timeElapse := timeEnd - timeBegin
+		if timeElapse < 0 { // time back
+			timeElapseMs = frameMs
+		} else {
+			timeElapseMs = uint32(timeElapse / int64(time.Millisecond))
+		}
+
+		if timeElapseMs < frameMs {
+			timeWaitMs := frameMs - timeElapseMs
+			time.Sleep(time.Duration(time.Millisecond * time.Duration(timeWaitMs)))
+			timeElapseMs += timeWaitMs
 		}
 	}
 	fmt.Println("had quit")

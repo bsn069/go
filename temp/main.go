@@ -4,6 +4,7 @@ import (
 	_ "net/http/pprof"
 
 	"github.com/bsn069/go/bin"
+	"github.com/bsn069/go/gate"
 )
 
 func main() {
@@ -13,6 +14,6 @@ func main() {
 	bin.Run(bin.NewBinTest(3, 1))
 	bin.Run(bin.NewBinTest(3, 2))
 	bin.Run(bin.NewBinTest(3, 3))
-	bin.Run(bin.NewBinTest(9, 9))
+	bin.Run(gate.NewBin(1))
 	bin.WaitQuit()
 }
