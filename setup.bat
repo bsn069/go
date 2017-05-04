@@ -1,5 +1,6 @@
 @echo off
 echo run in anywhere to config env
+echo need ln git go
 
 echo check gopath
 if not exist %GOPATH% (
