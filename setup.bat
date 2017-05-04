@@ -6,14 +6,14 @@ if not exist %GOPATH% (
 	echo not found %GOPATH%
 	exit
 )
-cd \d %GOPATH% 
+cd /d %GOPATH% 
 
 if not exist src (
-	mkdir src
+	mkdir src	
 )
 
 if not exist bin (
-	mkdir bin
+	mkdir bin	
 )
 
 echo check bsn069\go
@@ -35,8 +35,6 @@ pushd src
 		popd
 	popd
 popd
-
-echo check third part
 
 pushd src
 	echo check golang.org\x
@@ -67,9 +65,7 @@ pushd src
 	if not exist golang.org\x\tools (
 		ln -s %cd%\github.com\golang\tools %cd%\golang.org\x\tools
 	)
-popd
-
-pushd src
+ 
 	if not exist github.com\golang\protobuf\protoc-gen-go (
 		echo download github.com\golang\protobuf\protoc-gen-go
 		go get github.com/golang/protobuf/protoc-gen-go
@@ -89,9 +85,21 @@ pushd src
 		echo download github.com\xtaci\kcp-go
 		go get github.com/xtaci/kcp-go
 	)
+
+	pushd github.com\bsn069\go
+		if not exist nogit (
+			mkdir nogit
+		)
+
+		pushd nogit
+			if not exist ssdb-bin (
+				echo download ssdb-bin
+				echo git clone https:\github.com\ideawu\ssdb-bin.git
+			)
+		popd
+	popd
 popd
  
-
 if not exist bin\protoc-gen-go.exe (
 	echo install protoc-gen-go
 	pushd src\github.com\golang\protobuf\protoc-gen-go
@@ -99,22 +107,4 @@ if not exist bin\protoc-gen-go.exe (
 	popd
 )
 
-pushd src\github.com\bsn069\go
-echo %cd%
-	if not exist nogit (
-echo dsfds22
-		mkdir nogit
-	)
-echo dsfds11
-
-	pushd nogit
-		if not exist "ssdb-bin" (
-			echo download ssdb-bin
-			echo git clone https:\github.com\ideawu\ssdb-bin.git
-		)
-	popd
-popd
-echo ds33fds
-
 cd src\github.com\bsn069\go
-pause
