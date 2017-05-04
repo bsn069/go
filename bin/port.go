@@ -11,6 +11,7 @@ type IBin interface {
 	Id() uint32
 	Quit()
 	FrameMs() uint32 // every frame max ms
+	SetFrameMs(u32Ms uint32)
 }
 
 func Run(iBin IBin) {
