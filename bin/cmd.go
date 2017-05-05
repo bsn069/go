@@ -93,7 +93,7 @@ func cmdHELP(strParam string, bHelp bool) bool {
 		return true
 	}
 
-	fmt.Println("in bin run system cmd use !cmd")
+	// fmt.Println("in bin run system cmd use !cmd")
 	for k, v := range g_cmd {
 		fmt.Print(k + "\t")
 		v("", true)

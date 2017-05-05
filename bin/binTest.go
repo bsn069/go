@@ -7,6 +7,6 @@ type SBinTest struct {
 func NewBinTest(typeid, id uint32) *SBinTest {
 	pBin := &SBinTest{}
 	InitBinBase(typeid, id, &pBin.SBinBase)
-	pBin.SetFrameMs(11111111)
+	pBin.SetFrameMs(1000)
 	return pBin
 }
